@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = 'UTF-8'/>
+        <title>makeRoom</title>
+        <link rel = "stylesheet" type = "text/css" href = "main.css"/> 
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>
+            var username;
+            var hostlat;
+            var hostlong;
+            $(document).ready(function () {
+                let params = location.href.substr(location.href.lastIndexOf('?') + 1).split('@');
+                username = decodeURI(params[0]);
+                hostlat = decodeURI(params[1]);
+                hostlong = decodeURI(params[2]);
+                document.querySelector('#makeRoom_p_1').innerHTML = `<strong>"${username}"</strong>님이 만들 방`
+
+            });
+            function goMainRoom(){
+                const roomName = document.querySelector('#makeRoom_input_1').value;
+                const roomUrl = document.querySelector('#makeRoom_input_2').value;
+                let req = `http://localhost:3000/mainRoom?roomName=${roomName}&roomUrl=${roomUrl}&hostlat=${hostlat}&hostlong=${hostlong}`;
+                $.get(req);
+                window.location.href = "mainRoom.html?" + username + "@" + roomName + "@" + roomUrl;
+                
+            }
+        </script>  
+    </head>
+    <body>
+        <div id="makeRoom_div">
+            <p id="makeRoom_p_1"></p>
+            <p id="makeRoom_p_2">방 이름 :</p>
+            <input id="makeRoom_input_1" name = "roomname" type = "text" size = 10 placeholder = "컴과 MT" autofocus autocomplete="on" required/>
+            <p id="makeRoom_p_3">Youtube 동영상(재생목록) url :</p>
+            <input id="makeRoom_input_2" name = "roomurl" type = "text" placeholder = "https://youtu.be......" required/>
+            <button id="makeRoom_btn_1" onclick="goMainRoom()">생성</button>
+        </div>
+
+        
+
+    </body>
+</html>
