@@ -1,0 +1,14 @@
+{{#each rooms}}
+<div class="card room">
+  <div class="card-body">
+    <h5 class="card-title">{{this.name}}</h5>
+    <h6 class="text-muted">{{this.distance}}m | {{this.listeners.length}} people</h6>
+    <div class="card-text">
+      <button class="btn btn-outline-primary" onclick="joinRoomAsModerator('{{this.id}}')">방장으로
+        입장</button>
+      <button class="btn btn-outline-secondary" onclick="joinRoomAsListener('{{this.id}}')">청취자로
+        입장</button>
+    </div>
+  </div>
+</div>
+{{/each}}

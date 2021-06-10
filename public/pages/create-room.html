@@ -1,0 +1,36 @@
+<link rel = "stylesheet" type = "text/css" href = "main.css"/> 
+<div id="makeRoom_div">
+  <p id="makeRoom_p_1">방 만들기</p>
+  <p id="makeRoom_p_2">방 이름 :</p>
+  <input name="room-name" id="room-name" type = "text" size = 10 placeholder = "컴과 MT" autofocus autocomplete="on" required/>
+  <p id="makeRoom_p_3">Youtube 동영상(재생목록) url :</p>
+  <input name="room-name" id="youtube-url" type = "text" placeholder = "https://youtu.be......" required/>
+  <div id="make_btn_wrap">
+    <button type="button" id="makeRoom_btn_1" onclick="generateRoom()">
+      make
+    </button>
+    <button type="button" id="makeRoom_btn_2" onclick="render('pages/main.html', {username})">
+      cancle
+    </button>
+  </div> 
+</div>
+     
+<script>
+  var generateRoom = () => {
+    let name = $("#room-name").val();
+    let youtubeUrl = $("#youtube-url").val();
+    if (name && youtubeUrl) {
+      axios
+        .post("/api/rooms", { name, youtubeUrl, location: { lat: userlat, long: userlong } })
+        .then(() => {
+          alert("성공적으로 등록되었습니다");
+          render("pages/main.html", { username });
+        })
+        .catch((error) => {
+          alert("오류가 발생했습니다");
+        });
+    } else {
+      alert("정보를 모두 입력해주세요~")
+    }
+  };
+</script>

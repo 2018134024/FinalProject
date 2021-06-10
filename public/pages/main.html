@@ -1,0 +1,31 @@
+<link rel = "stylesheet" type = "text/css" href = "main.css"/> 
+<div id="main_div">
+
+  <div id="main_div_1">
+    <p id="main_p_1"><span>"{{username}}"</span>님 환영합니다!</p>
+  </div>
+
+  <div id="main_div_2">
+      <p id="main_p_2">방 만들기</p>
+      <button
+      type="button"
+      id="main_btn_1"
+      onclick="render('pages/create-room.html')"
+    >
+      make
+    </button>
+  </div>
+
+  <div id="main_div_3">
+      <p id="main_p_3">방 찾기</p>
+      <button
+      type="button"
+      id="main_btn_2"
+      onclick="handleShowListClick()"
+    >
+      [show list]
+    </button>
+    <div class="rooms d-grid gap-3"></div>
+  </div>
+
+</div>
